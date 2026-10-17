@@ -46,6 +46,57 @@ public class Main {
 
             boolean loggedIn = loginSystem.loginUser(loginU, loginP);
             System.out.println(loginSystem.returnLoginStatus(loggedIn));
+            
+                        // ---- PART 2 - QUICKCHAT (NO ARRAYS) ----
+            if (loggedIn) {
+                System.out.println("\n--- Welcome to QuickChat ---");
+                Message messageSystem = new Message();
+                boolean running = true;
+                int messageCount = 0;
+
+                while (running) {
+                    System.out.println("\nMenu:\n1) Send Messages\n2) Show recently sent messages\n3) Quit");
+                    System.out.print("Choose option: ");
+                    String choiceStr = scanner.nextLine();
+                    int choice = Integer.parseInt(choiceStr);
+
+                    if (choice == 1) {
+                        System.out.print("How many messages do you want to send? ");
+                        int howMany = Integer.parseInt(scanner.nextLine());
+
+                        for (int i = 1; i <= howMany; i++) {
+                            System.out.print("Enter recipient cell (e.g. +27831234567): ");
+                            String rec = scanner.nextLine();
+                            System.out.print("Enter message (max 250 chars): ");
+                            String txt = scanner.nextLine();
+
+                            Message m = new Message(rec, txt, i);
+                            System.out.println(m.checkRecipientCell());
+                            System.out.println(m.checkMessageLength());
+                            
+                            System.out.println("1) Send  2) Disregard  3) Store to send later");
+                            int opt = Integer.parseInt(scanner.nextLine());
+                            String result = m.SentMessage(opt);
+                            System.out.println(result);
+                            
+                            if (result.equals("Message sent")) {
+                                messageCount++;
+                                System.out.println("ID: " + m.getMessageID());
+                                System.out.println("Hash: " + m.getMessageHash());
+                            }
+                        }
+
+                    } else if (choice == 2) {
+                        System.out.println(messageSystem.printMessages());
+                    } else if (choice == 3) {
+                        running = false;
+                        System.out.println("Total messages sent: " + messageCount);
+                        System.out.println("Quitting QuickChat...");
+                    } else {
+                        System.out.println("Invalid option");
+                    }
+                }
+            }
         }
         }
 }
