@@ -79,7 +79,7 @@ public class Main {
                             String result = m.SentMessage(opt);
                             System.out.println(result);
                             
-                            if (result.equals("Message sent")) {
+                            if (result.equals("Successfully sent")) {
                                 messageCount++;
                                 System.out.println("ID: " + m.getMessageID());
                                 System.out.println("Hash: " + m.getMessageHash());
