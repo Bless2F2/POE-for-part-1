@@ -112,6 +112,7 @@ public class Message {
         return totalMessages;
     }
 
+    // Attributed: File handling - https://www.w3schools.com/java/java_files_create.asp
         public void storeMessage() {
         try {
             FileWriter writer = new FileWriter("storedMessages.json", true);
