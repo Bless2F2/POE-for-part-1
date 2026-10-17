@@ -56,12 +56,32 @@ public class Message {
     }
 
     public String createMessageHash(int msgNumber) {
-        String firstTwo = messageID.substring(0, 2);
-        String[] parts = message.trim().split(" ");
-        String first = parts[0].replaceAll("[^A-Za-z]", "").toUpperCase();
-        String last = parts[parts.length - 1].replaceAll("[^A-Za-z]", "").toUpperCase();
-        return firstTwo + ":" + msgNumber + ":" + first + last;
+    String firstTwo = messageID.substring(0, 2);
+    String trimmed = message.trim();
+    
+    // first word without array
+    int firstSpace = trimmed.indexOf(" ");
+    String firstWord;
+    if (firstSpace == -1) {
+        firstWord = trimmed;
+    } else {
+        firstWord = trimmed.substring(0, firstSpace);
     }
+    
+    // last word without array
+    int lastSpace = trimmed.lastIndexOf(" ");
+    String lastWord;
+    if (lastSpace == -1) {
+        lastWord = trimmed;
+    } else {
+        lastWord = trimmed.substring(lastSpace + 1);
+    }
+    
+    String first = firstWord.replaceAll("[^A-Za-z]", "").toUpperCase();
+    String last = lastWord.replaceAll("[^A-Za-z]", "").toUpperCase();
+    
+    return firstTwo + ":" + msgNumber + ":" + first + last;
+}
 
     public String createMessageHash(String fixedID, int msgNumber, String fixedMessage) {
         this.messageID = fixedID;
