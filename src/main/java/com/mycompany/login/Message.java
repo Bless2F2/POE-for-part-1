@@ -108,7 +108,7 @@ public class Message {
         return allMessages;
     }
 
-    public int returnTotalMessagess() {
+    public int returnTotalMessages() {
         return totalMessages;
     }
 
