@@ -26,7 +26,7 @@ public class MessageTest {
         Message m = new Message();
         assertTrue(m.checkMessageID());
     }
-    // 4 - YOUR hash format is first2:msgNumber:FIRST+LAST
+    // 4 - My hash format is first2:msgNumber:FIRST+LAST
     @Test public void testHashContainsColons() {
         Message m = new Message();
         String hash = m.createMessageHash("1234567890", 1, "Hi Mike, can you join us for dinner tonight?");
@@ -42,7 +42,7 @@ public class MessageTest {
     @Test public void testHashContainsFirstAndLastWord() {
         Message m = new Message();
         String hash = m.createMessageHash("1234567890", 1, "Hi Mike, can you join us for dinner tonight?");
-        // your code makes HIMIKE? + TONIGHT -> HITONIGHT?
+        // My code makes HIMIKE? + TONIGHT -> HITONIGHT?
         assertTrue(hash.toUpperCase().contains("HI"));
         assertTrue(hash.toUpperCase().contains("TONIGHT"));
     }
