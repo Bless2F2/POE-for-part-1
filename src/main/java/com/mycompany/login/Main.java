@@ -81,7 +81,7 @@ public class Main {
                             System.out.println("Message Hash:" + m.createMessageHash(i));
                             System.out.println(result);
                             
-                            if (result.equals("Message Successfully sent.")) {
+                            if (result.equals("Message successfully sent.")) {
                                 messageCount++;
                                
                             }
