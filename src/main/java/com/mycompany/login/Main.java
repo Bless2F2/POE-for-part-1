@@ -77,6 +77,8 @@ public class Main {
                             System.out.println("1) Send  2) Disregard  3) Store to send later");
                             int opt = Integer.parseInt(scanner.nextLine());
                             String result = m.SentMessage(opt);
+                            System.out.println("Message ID: " + m.getMessageID());
+                            System.out.println("Message Hash:" + m.createMessageHash(i));
                             System.out.println(result);
                             
                             if (result.equals("Message Successfully sent")) {
