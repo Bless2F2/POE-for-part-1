@@ -79,7 +79,7 @@ public class Main {
                             String result = m.SentMessage(opt);
                             System.out.println(result);
                             
-                            if (result.equals("Successfully sent")) {
+                            if (result.equals("Message Successfully sent")) {
                                 messageCount++;
                                 System.out.println("ID: " + m.getMessageID());
                                 System.out.println("Hash: " + m.getMessageHash());
@@ -87,7 +87,7 @@ public class Main {
                         }
 
                     } else if (choice == 2) {
-                        System.out.println(messageSystem.printMessages());
+                        System.out.println("Coming soon.");
                     } else if (choice == 3) {
                         running = false;
                         System.out.println("Total messages sent: " + messageCount);
