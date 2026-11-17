@@ -110,7 +110,6 @@ System.out.println(loginSystem.getCellPhoneMessage(cell));
                              System.out.println("Recipient: " + rec);
                              System.out.println("Message: " + txt);
                                 messageCount++;
-                               
                             }
                         }
 
