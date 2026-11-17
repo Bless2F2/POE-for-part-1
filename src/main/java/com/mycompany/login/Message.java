@@ -16,24 +16,34 @@ public class Message {
     private String messageHash;
     private static int totalMessages = 0;
     private static String allMessages = "";
+    private int messageNumber;
 
     public Message(String recipient, String message, int messageNumber) {
         this.recipient = recipient;
         this.message = message;
+        this.messageNumber = messageNumber;
         this.messageID = generateID();
         this.messageHash = createMessageHash(messageNumber);
     }
 
     public Message() {
-        this.messageID = generateID();
-        this.message = "Hi Mike, can you join us for dinner tonight?";
-    }
+    this.recipient = "+27831234567";
+    this.message = "Hi Mike, can you join us for dinner tonight?";
+    this.messageNumber = 0;
+    this.messageID = generateID();
+    this.messageHash = createMessageHash(messageNumber);
+}
 
     private String generateID() {
-        Random rand = new Random();
-        long num = 1000000000L + (long)(rand.nextDouble() * 9000000000L);
-        return String.valueOf(num);
+    Random rand = new Random();
+    StringBuilder sb = new StringBuilder();
+    sb.append(rand.nextInt(9) + 1); // first digit 1-9, so no leading 0
+    for (int i = 1; i < 10; i++) {
+        sb.append(rand.nextInt(10)); // next 9 digits 0-9
     }
+    return sb.toString();
+
+}
 
     public boolean checkMessageID() {
         return messageID.length() == 10;
@@ -91,12 +101,12 @@ public class Message {
 
     public String SentMessage(int choice) {
         if (choice == 1) {
-            totalMessages++;
-            allMessages = allMessages + messageHash + " To: " + recipient + " | " + message + "\n";
-            storeMessage();
-            return "Message successfully sent.";
-        } else if (choice == 2) {
-            return "Press 0 to delete the message.";
+    totalMessages++;
+    allMessages = allMessages + messageHash + " To: " + recipient + " | " + message + "\n";
+    return "Message successfully sent.";
+}
+        else if (choice == 2){
+            return "Press 0 to delete message.";
         } else {
             storeMessage();
             return "Message successfully stored.";
@@ -112,17 +122,28 @@ public class Message {
         return totalMessages;
     }
 
-    // Attributed: File handling - https://www.w3schools.com/java/java_files_create.asp
-        public void storeMessage() {
-        try {
-            FileWriter writer = new FileWriter("storedMessages.json", true);
-            String json = "{\"messageID\":\"" + messageID + "\",\"messageHash\":\"" + messageHash + "\",\"recipient\":\"" + recipient + "\",\"message\":\"" + message.replace("\"", "'") + "\"}\n";
-            writer.write(json);
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+    // This list remembers all stored messages while app is running
+private static java.util.List<String> allStored = new java.util.ArrayList<>();
+
+public void storeMessage() {
+    try {
+        String json = "{\"messageID\":\"" + messageID + "\",\"messageHash\":\"" + messageHash + "\",\"recipient\":\"" + recipient + "\",\"message\":\"" + message + "\"}";
+        allStored.add(json);
+
+        FileWriter writer = new FileWriter("storedMessages.json", false);
+        writer.write("[\n");
+        for (int i = 0; i < allStored.size(); i++) {
+            writer.write(allStored.get(i));
+            if (i < allStored.size() - 1) writer.write(",");
+            writer.write("\n");
         }
+        writer.write("]");
+        writer.close();
+    } catch (IOException e) {
+        System.out.println("Error: " + e.getMessage());
     }
+}
+    
 
     public String getMessageID() { return messageID; }
     public String getMessageHash() { return messageHash; }

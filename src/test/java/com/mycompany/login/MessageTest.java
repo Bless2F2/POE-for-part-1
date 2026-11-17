@@ -92,4 +92,31 @@ public class MessageTest {
         File f = new File("storedMessages.json");
         assertTrue(f.exists());
     }
+       
+    @Test
+    public void testHashExact_00_0_HITONIGHT() {
+        Message m = new Message();
+        String hash = m.createMessageHash("0012345678", 0, "Hi Mike, can you join us for dinner tonight?");
+        assertEquals("00:0:HITONIGHT", hash);
+    }
+
+    
+    @Test
+    public void testHashLoop() {
+        Message m = new Message();
+        String[] messages = {
+            "Hi Mike, can you join us for dinner tonight?",
+            "Hello world again",
+            "Good morning everyone"
+        };
+        String[] expected = {
+            "00:0:HITONIGHT",
+            "00:1:HELLOAGAIN",
+            "00:2:GOODEVERYONE"
+        };
+        for (int i = 0; i < messages.length; i++) {
+            String hash = m.createMessageHash("0012345678", i, messages[i]);
+            assertEquals(expected[i], hash);
+        }
+    }
 }

@@ -23,15 +23,30 @@ public class Main {
 
         System.out.print("Enter Username (must contain _ and max 5 chars): ");
         String username = scanner.nextLine();
-        System.out.println(loginSystem.getUsernameMessage(username));
+        while (!username.contains("_") || username.length() > 5) {
+        System.out.println("Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.");
+        System.out.print("Enter Username (must contain _ and max 5 chars): ");
+        username = scanner.nextLine();
+}
+System.out.println(loginSystem.getUsernameMessage(username));
 
         System.out.print("Enter Password (8 chars, capital, number, special char): ");
         String password = scanner.nextLine();
+        while (!loginSystem.checkPasswordComplexity(password)) {
+        System.out.println("Password is not correctly formatted, please ensure that the password contains at least eight characters, a capital letter, a number and a special character.");
+        System.out.print("Enter Password (8 chars, capital, number, special char): ");
+        password = scanner.nextLine();
+}
         System.out.println(loginSystem.getPasswordMessage(password));
 
         System.out.print("Enter SA Cell Number (e.g. +27831234567): ");
         String cell = scanner.nextLine();
-        System.out.println(loginSystem.getCellPhoneMessage(cell));
+        while (!cell.startsWith("+27") || cell.length() != 12) {
+        System.out.println("Cell phone number incorrectly formatted or does not contain international code.");
+        System.out.print("Enter SA Cell Number (e.g. +27831234567): ");
+        cell = scanner.nextLine();
+}
+System.out.println(loginSystem.getCellPhoneMessage(cell));
 
         String registrationResult = loginSystem.registerUser(username, password, cell);
         System.out.println(registrationResult);
@@ -67,8 +82,18 @@ public class Main {
                         for (int i = 1; i <= howMany; i++) {
                             System.out.print("Enter recipient cell (e.g. +27831234567): ");
                             String rec = scanner.nextLine();
-                            System.out.print("Enter message (max 250 chars): ");
-                            String txt = scanner.nextLine();
+                            while (!rec.startsWith("+") || rec.length() < 10) {
+    System.out.println("Cell phone number is incorrectly formatted. Please try again.");
+    System.out.print("Enter recipient cell (e.g. +27831234567): ");
+    rec = scanner.nextLine();
+}
+                    System.out.print("Enter message (max 250 chars): ");
+                   String txt = scanner.nextLine();
+                   while (txt.length() > 250) {
+                   System.out.println("Message exceeds 250 characters. Please try again.");
+                   System.out.print("Enter message (max 250 chars): ");
+                  txt = scanner.nextLine();
+                  }
 
                             Message m = new Message(rec, txt, i);
                             System.out.println(m.checkRecipientCell());
@@ -77,11 +102,13 @@ public class Main {
                             System.out.println("1) Send  2) Disregard  3) Store to send later");
                             int opt = Integer.parseInt(scanner.nextLine());
                             String result = m.SentMessage(opt);
-                            System.out.println("Message ID: " + m.getMessageID());
-                            System.out.println("Message Hash:" + m.createMessageHash(i));
                             System.out.println(result);
                             
                             if (result.equals("Message successfully sent.")) {
+                                System.out.println("Message ID: " + m.getMessageID());
+                             System.out.println("Message Hash:" + m.createMessageHash(i));
+                             System.out.println("Recipient: " + rec);
+                             System.out.println("Message: " + txt);
                                 messageCount++;
                                
                             }
