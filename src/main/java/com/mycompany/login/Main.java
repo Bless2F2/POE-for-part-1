@@ -70,7 +70,7 @@ System.out.println(loginSystem.getCellPhoneMessage(cell));
                 int messageCount = 0;
 
                 while (running) {
-                    System.out.println("\nMenu:\n1) Send Messages\n2) Show recently sent messages\n3) Quit");
+                    System.out.println("\nMenu:\n1) Send Messages\n2) Show recently sent messages\n3) Quit\n4) Stored Messages");
                     System.out.print("Choose option: ");
                     String choiceStr = scanner.nextLine();
                     int choice = Integer.parseInt(choiceStr);
@@ -110,7 +110,7 @@ System.out.println(loginSystem.getCellPhoneMessage(cell));
                              System.out.println("Recipient: " + rec);
                              System.out.println("Message: " + txt);
                                 messageCount++;
-                            }
+                            }   
                         }
 
                     } else if (choice == 2) {
@@ -119,7 +119,45 @@ System.out.println(loginSystem.getCellPhoneMessage(cell));
                         running = false;
                         System.out.println("Total messages sent: " + messageCount);
                         System.out.println("Quitting QuickChat...");
-                    } else {
+                    } else if (choice == 4) {
+                   StoredMessages sm = new StoredMessages();
+                 boolean inStored = true;
+                while (inStored) {
+        System.out.println("\n--- Stored Messages ---\n"
+            + "a) Show sender + recipient of all stored\n"
+            + "b) Show longest stored message\n"
+            + "c) Search by Message ID\n"
+            + "d) Search by recipient\n"
+            + "e) Delete by Message Hash\n"
+            + "f) Display full report\n"
+            + "g) Back to main menu\n"
+            + "Choose option: ");
+        String sub = scanner.nextLine();
+        if (sub.equalsIgnoreCase("a")) {
+            System.out.println(sm.displayStoredSendersRecipients());
+        } else if (sub.equalsIgnoreCase("b")) {
+            System.out.println("Longest: " + sm.longestStoredMessage());
+        } else if (sub.equalsIgnoreCase("c")) {
+            System.out.print("Enter Message ID: ");
+            String id = scanner.nextLine();
+            System.out.println(sm.searchByID(id));
+        } else if (sub.equalsIgnoreCase("d")) {
+            System.out.print("Enter recipient: ");
+            String recSearch = scanner.nextLine();
+            System.out.println(sm.searchByRecipient(recSearch));
+        } else if (sub.equalsIgnoreCase("e")) {
+            System.out.print("Enter Message Hash: ");
+            String hash = scanner.nextLine();
+            System.out.println(sm.deleteByHash(hash));
+        } else if (sub.equalsIgnoreCase("f")) {
+            System.out.println(sm.displayReport());
+        } else if (sub.equalsIgnoreCase("g")) {
+            inStored = false;
+        } else {
+            System.out.println("Invalid option");
+        }
+    }
+} else {
                         System.out.println("Invalid option");
                     }
                 }
