@@ -1,12 +1,5 @@
-{"messageID":"3818363980","messageHash":"38:1:HIHI","recipient":"+27810473075","message":"Hi"}
-{"messageID":"9426821512","messageHash":"94:1:HIWHEREYOU","recipient":"+27810473075","message":"Hi,Where are you?"}
-{"messageID":"4059551081","messageHash":"40:1:HIHI","recipient":"+27718693002","message":"Hi"}
-{"messageID":"3917760466","messageHash":"39:1:HITONIGHT","recipient":"+27718693002","message":"Hi Mike, can you join us for dinner tonight?"}
-{"messageID":"7018631882","messageHash":"70:1:HITONIGHT","recipient":"+27810473075","message":"Hi Mike, can you join us for dinner tonight?"}
-{"messageID":"6955167828","messageHash":"69:1:HEYTOMNIGHT","recipient":"+27810473075","message":"Hey Mike, can you join us for dinner tomnight?"}
-{"messageID":"4898140676","messageHash":"48:1:HIYOU","recipient":"+27810473075","message":"Hi Mike, where are you?"}
-{"messageID":"5819719831","messageHash":"58:1:HIYOU","recipient":"+27810473075","message":"Hi Mike, where are you?"}
-{"messageID":"3154311037","messageHash":"31:1:HIHI","recipient":"+27718693002","message":"Hi"}
-{"messageID":"8543941580","messageHash":"85:1:HITONIGHT","recipient":"+27718693002","message":"Hi Mike, can you join us for dinner tonight?"}
-{"messageID":"6879219642","messageHash":"68:1:HIYOU","recipient":"+27810473075","message":"Hi where are you"}
-{"messageID":"5743078686","messageHash":"57:2:COMEME","recipient":"+27810473075","message":"Come back to me"}
+[
+{"messageID":"9417837205","messageHash":"94:1:HEYME","recipient":"+27810473075","message":"hey, so i wanted to tell you that please forgive me"},
+{"messageID":"2339748340","messageHash":"23:2:IYOU","recipient":"+27783013303","message":"i love you"},
+{"messageID":"6952667400","messageHash":"69:1:HELLOTESTING","recipient":"+783013303","message":"Hello testing"}
+]
